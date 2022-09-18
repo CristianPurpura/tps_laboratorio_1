@@ -9,6 +9,6 @@
 #define PEDIRDATOS_H_
 
 
-int cargaGastoHospedaje(int gasto);
+int cargaGastoHospedaje(int* acumulador);
 
 #endif /* PEDIRDATOS_H_ */

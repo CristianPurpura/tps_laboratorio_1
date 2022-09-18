@@ -15,12 +15,12 @@
 
 int main(void) {
 
-	int gasto=0;
+
 	int acumuladorHospedaje=0;
 
 
 
-	acumuladorHospedaje = cargaGastoHospedaje(gasto);
+	cargaGastoHospedaje(&acumuladorHospedaje);
 
 	printf("%d",acumuladorHospedaje);
 
