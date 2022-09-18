@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : tp1.c
+ Name        : tps_laboratorio_1.c
  Author      : 
  Version     :
  Copyright   : Your copyright notice
@@ -10,9 +10,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "utn.h"
+#include "pedirDatos.h"
 
 int main(void) {
-	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
+
+	int gasto=0;
+	int acumuladorHospedaje=0;
+
+
+
+	acumuladorHospedaje = cargaGastoHospedaje(gasto);
+
+	printf("%d",acumuladorHospedaje);
+
 	return EXIT_SUCCESS;
-	//
 }
