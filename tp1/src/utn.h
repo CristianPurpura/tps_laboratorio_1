@@ -12,7 +12,7 @@
 #define UTN_PURPURA_H_
 
 int utn_getNumero(int* pResultado, char* mensaje, char* mensajeError, int minimo, int
-maximo, int reintentos);
+		maximo, int reintentos);
 
 
 int myGets(char* cadena, int longitud);

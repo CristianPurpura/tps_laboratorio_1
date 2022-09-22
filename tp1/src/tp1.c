@@ -32,12 +32,12 @@ int main(void) {
 	int contadorSudamerica=0;
 	int contadorEuropa=0;
 	int contadorOceania=0;
-	float porcentajeAsia;
-	float porcentajeAfrica;
-	float porcentajeNorte;
-	float porcentajeSudamerica;
-	float porcentajeEuropa=0;
-	float porcentajeOceania;
+	float promedioAsia;
+	float promedioAfrica;
+	float promedioNorte;
+	float promedioSudamerica;
+	float promedioEuropa;
+	float promedioOceania;
 	int numeroCamiseta;
 	int control;
 	int opcionMenuPrincipal;
@@ -47,14 +47,17 @@ int main(void) {
 	float mantenimientoIncrementado;
 	int controlCalculos;
 	float incremento=0;
+	int controlHospedaje;
+	int controlComida;
+	int controlTransporte;
 
 	do
 	{
 		printf("\t\tMENU PRINCIPAL\n\n");
 		printf("1. Ingreso de los constos de mantenimiento.\n");
-		printf("Costo de Hospedaje -> %d\n",acumuladorHospedaje);
-		printf("Costo de Comida -> %d\n",acumuladorComida);
-		printf("Costo de Transporte -> %d\n\n",acumuladorTransporte);
+		printf("Costo de Hospedaje -> $ %d\n",acumuladorHospedaje);
+		printf("Costo de Comida -> $ %d\n",acumuladorComida);
+		printf("Costo de Transporte -> $ %d\n\n",acumuladorTransporte);
 		printf("2. Carga de jugadores.\n");
 		printf("Arqueros -> %d\n",contadorArqueros);
 		printf("Defensores -> %d\n",contadorDefensores);
@@ -79,33 +82,58 @@ int main(void) {
 				printf("Elija una opcion : ");
 				scanf("%d",&opcionMenuMantenimiento);
 
+
 				switch(opcionMenuMantenimiento)
 				{
 				case 1:
 					fflush(stdin);
-					control = cargaGastoHospedaje(&acumuladorHospedaje);
-					while(control!=0)
+					controlHospedaje = cargaGastoHospedaje(&acumuladorHospedaje);
+					while(controlHospedaje!=0)
 					{
-						printf("Error por favor cargar los datos nuevamente.\n");
-						control = cargaGastoHospedaje(&acumuladorHospedaje);
+						printf("\n\tERROR por favor cargar los datos nuevamente.\n");
+						controlHospedaje = cargaGastoHospedaje(&acumuladorHospedaje);
 					}
 					break;
 				case 2:
 					fflush(stdin);
-					control = cargaGastoComida(&acumuladorComida);
-					while(control!=0)
+					controlComida = cargaGastoComida(&acumuladorComida);
+					while(controlComida!=0)
 					{
-						printf("Error por favor cargar los datos nuevamente.\n");
-						control = cargaGastoComida(&acumuladorComida);
+						printf("\n\tERROR por favor cargar los datos nuevamente.\n");
+						controlComida = cargaGastoComida(&acumuladorComida);
 					}
 					break;
 				case 3:
 					fflush(stdin);
-					control = cargaGastoTransporte(&acumuladorTransporte);
-					while(control!=0)
+					controlTransporte = cargaGastoTransporte(&acumuladorTransporte);
+					while(controlTransporte!=0)
 					{
-						printf("Error por favor cargar los datos nuevamente.\n");
-						control = cargaGastoTransporte(&acumuladorTransporte);
+						printf("\n\tERRORr por favor cargar los datos nuevamente.\n");
+						controlTransporte = cargaGastoTransporte(&acumuladorTransporte);
+					}
+					break;
+				case 4:
+					if(controlHospedaje ==0 && controlComida==0 && controlTransporte==0 )
+					{
+						controlHospedaje=1;
+						controlComida=1;
+						controlTransporte=1;
+						break;
+					}
+					if(controlHospedaje!=0)
+					{
+						printf("\nFalta ingresar el gasto de Hospedaje. \n");
+						opcionMenuMantenimiento = 0;
+					}
+					if(controlComida!=0)
+					{
+						printf("\nFalta ingresar el gasto de Comida. \n");
+						opcionMenuMantenimiento = 0;
+					}
+					if(controlTransporte!=0)
+					{
+						printf("\nFalta ingresar el gasto de Transporte. \n");
+						opcionMenuMantenimiento = 0;
 					}
 					break;
 
@@ -121,7 +149,7 @@ int main(void) {
 				control = cargaNumeroCamiseta(&numeroCamiseta);
 				while(control!=0)
 				{
-					printf("Error por favor cargar los datos nuevamente.\n");
+					printf("\n\tERROR por favor cargar los datos nuevamente.\n");
 					control = cargaNumeroCamiseta(&numeroCamiseta);
 				}
 
@@ -129,7 +157,7 @@ int main(void) {
 				control = cargaPosicion(&contadorArqueros, &contadorDefensores, &contadorMediocampistas, &contadorDelanteros);
 				while(control!=0)
 				{
-					printf("Error por favor cargar los datos nuevamente.\n");
+					printf("\n\tERROR por favor cargar los datos nuevamente.\n");
 					control = cargaPosicion(&contadorArqueros, &contadorDefensores, &contadorMediocampistas, &contadorDelanteros);
 				}
 
@@ -137,7 +165,7 @@ int main(void) {
 				control = cargaConfederacion(&contadorAsia, &contadorAfrica, &contadorNorte, &contadorSudamerica, &contadorEuropa, &contadorOceania);
 				while(control!=0)
 				{
-					printf("Error por favor cargar los datos nuevamente.\n");
+					printf("\n\tERROR por favor cargar los datos nuevamente.\n");
 					control = cargaConfederacion(&contadorAsia, &contadorAfrica, &contadorNorte, &contadorSudamerica, &contadorEuropa, &contadorOceania);
 				}
 				cantidadJugadores++;
@@ -149,11 +177,11 @@ int main(void) {
 			break;
 		case 3:
 
-			controlCalculos = calculos(&contadorAsia, &contadorAfrica, &contadorNorte, &contadorSudamerica, &contadorEuropa, &contadorOceania, &cantidadJugadores, &porcentajeAsia, &porcentajeAfrica, &porcentajeNorte, &porcentajeSudamerica, &porcentajeEuropa, &porcentajeOceania, &mantenimiento, &mantenimientoIncrementado, &incremento);
+			controlCalculos = calculos(&contadorAsia, &contadorAfrica, &contadorNorte, &contadorSudamerica, &contadorEuropa, &contadorOceania, &cantidadJugadores, &promedioAsia, &promedioAfrica, &promedioNorte, &promedioSudamerica, &promedioEuropa, &promedioOceania, &mantenimiento, &mantenimientoIncrementado, &incremento);
 
 			if(controlCalculos != 0)
 			{
-				printf("\n\nError no hay suficientes datos cargados.\n\n ");
+				printf("\n\n\tERROR no hay suficientes datos cargados.\n\n ");
 				break;
 			}
 
@@ -161,31 +189,31 @@ int main(void) {
 		case 4:
 			if(controlCalculos!= 0)
 			{
-				printf("\n\nError no se realizaron los calculos aun.\n\n ");
+				printf("\n\n\tERROR no se realizaron los calculos aun.\n\n ");
 				break;
 			}
 			else
 			{
 				printf("\t\tInformar todos los resultados\n\n");
-				printf("Porcentaje AFC es  %.2f\n", porcentajeAsia);
-				printf("Porcentaje CAF es  %.2f\n", porcentajeAfrica);
-				printf("Porcentaje CONCACAF es  %.2f\n", porcentajeNorte);
-				printf("Porcentaje CONMEBOL es  %.2f\n", porcentajeSudamerica);
-				printf("Porcentaje UEFA es  %.2f\n", porcentajeEuropa);
-				printf("Porcentaje OFC es  %.2f\n", porcentajeOceania);
+				printf("Promedio AFC(Asia) es  %.2f\n", promedioAsia);
+				printf("Promedio CAF(Africa) es  %.2f\n", promedioAfrica);
+				printf("Promedio CONCACAF(Norte) es  %.2f\n", promedioNorte);
+				printf("Promedio CONMEBOL(Sudamerica) es  %.2f\n", promedioSudamerica);
+				printf("Promedio UEFA(Europa) es  %.2f\n", promedioEuropa);
+				printf("Promedio OFC(Oceania) es  %.2f\n", promedioOceania);
 				if(incremento>0)
 				{
-					printf("El consto de mantenimiento era de %d y recibio un aumento de %.2f, su nuevo valos es de: %.2f \n",mantenimiento,incremento,mantenimientoIncrementado);
+					printf("\nEl consto de mantenimiento era de %d y recibio un aumento de %.2f, su nuevo valos es de: %.2f \n",mantenimiento,incremento,mantenimientoIncrementado);
 				}
 				else
 				{
-					printf("El conto de mantenimiento es de : %d\n", mantenimiento);
+					printf("\nEl costo de mantenimiento es de : %d\n", mantenimiento);
 				}
 			}
 
 
 
-		break;
+			break;
 
 
 

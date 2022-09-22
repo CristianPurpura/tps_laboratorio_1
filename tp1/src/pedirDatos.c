@@ -9,7 +9,7 @@ int cargaGastoHospedaje(int* acumulador)
 
 	int control = 1;
 	int gasto;
-	control = utn_getNumero(&gasto,"Ingrese el gasto de hospedaje :","Error el gasto no puede ser menor a 0 \n", 1, 10000, 1);
+	control = utn_getNumero(&gasto,"Ingrese el gasto de hospedaje :","\n\tERROR el gasto no puede ser menor a 0 \n", 1, 10000, 1);
 
 	if(control==0)
 	{
@@ -29,7 +29,7 @@ int cargaGastoComida(int* acumulador)
 
 	int control = 1;
 	int gasto;
-	control = utn_getNumero(&gasto,"Ingrese el gasto de comida :","Error el gasto no puede ser menor a 0 \n", 1, 10000, 1);
+	control = utn_getNumero(&gasto,"Ingrese el gasto de comida :","\n\tERROR el gasto no puede ser menor a 0 \n", 1, 10000, 1);
 
 	if(control==0)
 	{
@@ -49,7 +49,7 @@ int cargaGastoTransporte(int* acumulador)
 
 	int control = 1;
 	int gasto;
-	control = utn_getNumero(&gasto,"Ingrese el gasto de transporte :","Error el gasto no puede ser menor a 0 \n", 1, 10000, 1);
+	control = utn_getNumero(&gasto,"Ingrese el gasto de transporte :","\n\tERROR el gasto no puede ser menor a 0 \n", 1, 10000, 1);
 
 	if(control==0)
 	{
@@ -68,7 +68,7 @@ int cargaNumeroCamiseta (int* numeroCamiseta)
 {
 	int control = 1;
 	int buffer;
-	control = utn_getNumero(&buffer,"Ingrese el numero de camiseta :","Error numero entre 1 y 50 \n", 1, 50, 1);
+	control = utn_getNumero(&buffer,"Ingrese el numero de camiseta :","\n\tERROR numero entre 1 y 50 \n", 1, 50, 1);
 
 	if(control==0)
 	{
@@ -86,7 +86,7 @@ int cargaPosicion (int* contador1, int* contador2, int* contador3, int* contador
 	int buffer;
 
 
-	control = utn_getNumero(&buffer, "Ingrese la posicion\n 1(Arqueros)\n 2(Defensores)\n 3(Mediocampistas)\n 4(Delanteros)\n Elija una opcion : ", "Error posicion no valida 1-4\n", 1, 4, 1);
+	control = utn_getNumero(&buffer, "Ingrese la posicion\n 1(Arqueros)\n 2(Defensores)\n 3(Mediocampistas)\n 4(Delanteros)\n Elija una opcion : ", "\n\tERROR posicion no valida 1-4\n", 1, 4, 1);
 
 	if(control==0)
 	{
@@ -99,7 +99,7 @@ int cargaPosicion (int* contador1, int* contador2, int* contador3, int* contador
 			}
 			else
 			{
-				printf("Posicion llena elija otra.\n");
+				printf("\n\tPosicion llena elija otra.\n");
 				control = 1;
 
 			}
@@ -111,7 +111,7 @@ int cargaPosicion (int* contador1, int* contador2, int* contador3, int* contador
 			}
 			else
 			{
-				printf("Posicion llena elija otra.\n");
+				printf("\n\tPosicion llena elija otra.\n");
 				control = 1;
 			}
 			break;
@@ -122,7 +122,7 @@ int cargaPosicion (int* contador1, int* contador2, int* contador3, int* contador
 			}
 			else
 			{
-				printf("Posicion llena elija otra.\n");
+				printf("\n\tPosicion llena elija otra.\n");
 				control = 1;
 			}
 			break;
@@ -133,7 +133,7 @@ int cargaPosicion (int* contador1, int* contador2, int* contador3, int* contador
 			}
 			else
 			{
-				printf("Posicion llena elija otra.\n");
+				printf("\n\tPosicion llena elija otra.\n");
 				control = 1;
 			}
 			break;
@@ -154,7 +154,7 @@ int cargaConfederacion (int* contador1, int* contador2, int* contador3, int* con
 	int buffer;
 
 
-	control = utn_getNumero(&buffer, "Ingrese la confederacion\n 1(AFC)\n 2(CAF)\n 3(CONCACAF)\n 4(CONMEBOL)\n 5(UEFA)\n 6(OFC)\n Elija una opcion : ", "Error confederacion no valida 1-6\n", 1, 6, 1);
+	control = utn_getNumero(&buffer, "Ingrese la confederacion\n 1(AFC) Asia\n 2(CAF) Africa\n 3(CONCACAF) Norte\n 4(CONMEBOL) Sudamerica\n 5(UEFA) Europa\n 6(OFC) Oceania\n Elija una opcion : ", "\n\tERROR confederacion no valida 1-6\n", 1, 6, 1);
 
 	if(control==0)
 	{

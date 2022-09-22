@@ -10,25 +10,27 @@
 
 
 
-int calculos(int* contador1, int* contador2, int* contador3, int* contador4, int* contador5, int* contador6, int* contador7,float* porcentaje1, float* porcentaje2,float* porcentaje3,float* porcentaje4,float* porcentaje5,float* porcentaje6, int* mantenimiento, float* mantenimientoIncrementado, float* incremento)
+int calculos(int* contador1, int* contador2, int* contador3, int* contador4, int* contador5, int* contador6, int* contador7,float* promedioUno, float* promedioDos,float* promedioTres,float* promedioCuatro,float* promedioCinco,float* promedioSeis, int* mantenimiento, float* mantenimientoIncrementado, float* incremento)
 {
 	int retorno = 1;
+
+	*incremento= 0;
 	if(*mantenimiento != 0 && *contador7 != 0)
 	{
-		*porcentaje1 = (float) *contador1 *100 / *contador7;
-		*porcentaje2 = (float) *contador2 *100 / *contador7;
-		*porcentaje3 = (float) *contador3 *100 / *contador7;
-		*porcentaje4 = (float) *contador4 *100 / *contador7;
-		*porcentaje5 = (float) *contador5 *100 / *contador7;
-		*porcentaje6 = (float) *contador6 *100 / *contador7;
+		*promedioUno = (float) *contador1  / *contador7;
+		*promedioDos = (float) *contador2  / *contador7;
+		*promedioTres = (float) *contador3  / *contador7;
+		*promedioCuatro = (float) *contador4  / *contador7;
+		*promedioCinco = (float) *contador5  / *contador7;
+		*promedioSeis = (float) *contador6  / *contador7;
 
-		if(*porcentaje5>51)
+		if(*promedioCinco > *promedioUno && *promedioCinco>*promedioDos && *promedioCinco>*promedioTres && *promedioCinco>*promedioCuatro && *promedioCinco>*promedioSeis)
 		{
 			*incremento= *mantenimiento * 0.35;
 			*mantenimientoIncrementado = *mantenimiento + *incremento;
 		}
 
-		printf("\n\n LOS CALCULOS SE REALIZARON EXITOSAMENTE\n\n");
+		printf("\n\n\n LOS CALCULOS SE REALIZARON EXITOSAMENTE\n\n\n");
 
 		retorno = 0;
 
