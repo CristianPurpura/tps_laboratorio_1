@@ -18,7 +18,7 @@ int esNumerica(char* cadena)
 	{
 		while(cadena[i] != '\0')
 		{
-			if(cadena[i] < '0' || cadena[i] > '9' )
+			if(cadena[i] < '0' || cadena[i] > '9')
 			{
 				retorno = 0;
 				break;
@@ -33,7 +33,7 @@ int myGets(char* cadena, int longitud)
 {
 	if(cadena != NULL && longitud >0 && fgets(cadena,longitud,stdin)==cadena)
 	{
-		fflush(stdin); // LINUX-> __fpurge o WIN-> fflush o MAC-> fpurge
+		fflush(stdin);
 		if(cadena[strlen(cadena)-1] == '\n')
 		{
 			cadena[strlen(cadena)-1] = '\0';

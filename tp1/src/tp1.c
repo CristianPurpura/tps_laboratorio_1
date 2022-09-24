@@ -50,24 +50,28 @@ int main(void) {
 	int controlHospedaje;
 	int controlComida;
 	int controlTransporte;
+	int controlMenuPrincipal;
 
 	do
 	{
 		printf("\t\tMENU PRINCIPAL\n\n");
 		printf("1. Ingreso de los constos de mantenimiento.\n");
-		printf("Costo de Hospedaje -> $ %d\n",acumuladorHospedaje);
-		printf("Costo de Comida -> $ %d\n",acumuladorComida);
-		printf("Costo de Transporte -> $ %d\n\n",acumuladorTransporte);
+		printf("\n\tCosto de Hospedaje -> $ %d\n",acumuladorHospedaje);
+		printf("\tCosto de Comida -> $ %d\n",acumuladorComida);
+		printf("\tCosto de Transporte -> $ %d\n\n",acumuladorTransporte);
 		printf("2. Carga de jugadores.\n");
-		printf("Arqueros -> %d\n",contadorArqueros);
-		printf("Defensores -> %d\n",contadorDefensores);
-		printf("Mediocampistas -> %d\n",contadorMediocampistas);
-		printf("Delanteros -> %d\n\n",contadorDelanteros);
+		printf("\n\tArqueros -> %d\n",contadorArqueros);
+		printf("\tDefensores -> %d\n",contadorDefensores);
+		printf("\tMediocampistas -> %d\n",contadorMediocampistas);
+		printf("\tDelanteros -> %d\n\n",contadorDelanteros);
 		printf("3. Realizar todos los calculos.\n\n");
 		printf("4. Mostrar los resultados.\n\n");
 		printf("5. Salir.\n\n");
-		printf("Elija una opcion :");
-		scanf("%d",&opcionMenuPrincipal);
+		controlMenuPrincipal = utn_getNumero(&opcionMenuPrincipal, "Elija una opcion :", "\nERROR opciones entre 1-5\n", 1, 5, 5);
+		while(controlMenuPrincipal==-1)
+		{
+			controlMenuPrincipal = utn_getNumero(&opcionMenuPrincipal, "Elija una opcion :", "\n ERROR opciones entre 1-5", 1, 5, 5);
+		}
 
 		switch(opcionMenuPrincipal)
 		{
@@ -115,9 +119,6 @@ int main(void) {
 				case 4:
 					if(controlHospedaje ==0 && controlComida==0 && controlTransporte==0 )
 					{
-						controlHospedaje=1;
-						controlComida=1;
-						controlTransporte=1;
 						break;
 					}
 					if(controlHospedaje!=0)
@@ -139,11 +140,19 @@ int main(void) {
 
 				}
 				mantenimiento = acumuladorComida+acumuladorHospedaje+acumuladorTransporte;
+				if(controlHospedaje ==0 && controlComida==0 && controlTransporte==0 )
+				{
+					controlHospedaje=1;
+					controlComida=1;
+					controlTransporte=1;
+					break;
+				}
+
 
 			}while(opcionMenuMantenimiento!=4);
 			break;
 		case 2:
-			if(cantidadJugadores<=22)
+			if(cantidadJugadores<22)
 			{
 				fflush(stdin);
 				control = cargaNumeroCamiseta(&numeroCamiseta);
@@ -170,6 +179,10 @@ int main(void) {
 				}
 				cantidadJugadores++;
 			}
+			else
+			{
+				printf("\nYa se cargaron todos los jugadores posibles. \n\n");
+			}
 
 
 
@@ -177,7 +190,7 @@ int main(void) {
 			break;
 		case 3:
 
-			controlCalculos = calculos(&contadorAsia, &contadorAfrica, &contadorNorte, &contadorSudamerica, &contadorEuropa, &contadorOceania, &cantidadJugadores, &promedioAsia, &promedioAfrica, &promedioNorte, &promedioSudamerica, &promedioEuropa, &promedioOceania, &mantenimiento, &mantenimientoIncrementado, &incremento);
+			controlCalculos = calculos(contadorAsia, contadorAfrica, contadorNorte, contadorSudamerica, contadorEuropa, contadorOceania, cantidadJugadores, &promedioAsia, &promedioAfrica, &promedioNorte, &promedioSudamerica, &promedioEuropa, &promedioOceania, mantenimiento, &mantenimientoIncrementado, &incremento);
 
 			if(controlCalculos != 0)
 			{
