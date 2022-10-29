@@ -17,7 +17,7 @@
 /// @param size tamaño de la lista
 void InicializarJugadores(eJugador jugadores[], int size)
 {
-	for(int i =10  ; i<size ; i++ )
+	for(int i =10  ; i<size ; i++ ) //   i esta apartir de 10 para mantener los datos harcodeados
 	{
 		jugadores[i].isEmply=0;
 	}
@@ -31,15 +31,15 @@ void InicializarJugadores(eJugador jugadores[], int size)
 void MostrarJugadores(eJugador jugadores[],int size)
 {
 
-	printf("  =================================================================================================================================\n");
-	printf(" | ID   |        NOMBRE       |    POSICION      |    N° CAM.   |    SUELDO    |       CONFEDERACION       |    A%cIOS DE CONTRATO  |  \n  ",165);
-	printf("---------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("   +======================================================================================================================================+\n");
+	printf("   | ID   |        NOMBRE            |    POSICION      |    N° CAM.   |    SUELDO    |       CONFEDERACION       |    A%cIOS DE CONTRATO  |  \n  ",165);
+	printf(" +--------------------------------------------------------------------------------------------------------------------------------------+\n");
 	for(int i=0;i<size;i++)
 	{
 		if(jugadores[i].isEmply==1)
-		printf(" |  %-4d|%-15s      |   %-15s|     %-9d| %.2f   |          %-15d  |         %-10d    |\n",jugadores[i].id,jugadores[i].nombre,jugadores[i].posicion,jugadores[i].numeroCamiseta,jugadores[i].salario,jugadores[i].idConfederacion,jugadores[i].aniosContrato);
+		printf("   |  %-4d|%-26s|    %-14s|     %-9d|%14.2f|            %-15d|          %-13d|\n",jugadores[i].id,jugadores[i].nombre,jugadores[i].posicion,jugadores[i].numeroCamiseta,jugadores[i].salario,jugadores[i].idConfederacion,jugadores[i].aniosContrato);
 	}
-	printf("  =================================================================================================================================\n");
+	printf("   +======================================================================================================================================+\n");
 }
 
 /*int SeleccionConfederacion(eJugador jugadores[], eConfederaciones lista[], int indice)
@@ -302,9 +302,9 @@ void BajaJugador(eJugador jugadores[],int size)
 /// @param sizeConfe tamaño lista confederaciones
 void MotrarJugadoresCompleto(eJugador jugadores[],eConfederaciones lista[],int sizeJug , int sizeConfe)
 {
-	printf("  =================================================================================================================================\n");
-	printf(" | ID   |        NOMBRE       |    POSICION      |    N° CAM.   |    SUELDO    |       CONFEDERACION       |    A%cIOS DE CONTRATO  |  \n  ",165);
-	printf("---------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("  =========================================================================================================================================\n");
+	printf(" | ID   |        NOMBRE            |    POSICION      |    N° CAM.   |      SUELDO     |       CONFEDERACION       |    A%cIOS DE CONTRATO  |  \n  ",165);
+	printf("-----------------------------------------------------------------------------------------------------------------------------------------\n");
 	for(int i=0;i<sizeJug;i++)
 	{
 		if(jugadores[i].isEmply==1)
@@ -313,12 +313,12 @@ void MotrarJugadoresCompleto(eJugador jugadores[],eConfederaciones lista[],int s
 			{
 				if(jugadores[i].idConfederacion==lista[j].id)
 				{
-					printf(" |  %-4d|%-15s      |   %-15s|     %-9d| %.2f   |          %-15s  |         %-10d    |\n",jugadores[i].id,jugadores[i].nombre,jugadores[i].posicion,jugadores[i].numeroCamiseta,jugadores[i].salario,lista[j].nombre,jugadores[i].aniosContrato);
+					printf(" |  %-4d|%-26s|  %-16s|      %-8d| $ %-14.2f|        %-19s|            %-11d|\n",jugadores[i].id,jugadores[i].nombre,jugadores[i].posicion,jugadores[i].numeroCamiseta,jugadores[i].salario,lista[j].nombre,jugadores[i].aniosContrato);
 
 				}
 			}
 		}
 	}
-	printf("  =================================================================================================================================\n");
+	printf("  =========================================================================================================================================\n");
 
 }

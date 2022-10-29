@@ -22,16 +22,16 @@
 int main(void) {
 	setbuf(stdout,NULL);
 
-	eJugador jugadores[TAM]={{1,"Leo Messi","Delantero",10,103,50000000,1,1},
-			{2,"Beo Messi","Delantero",5,100,5000000,5,1},
-			{3,"Aeo Messi","Delantero",2,100,4000000,2,1},
-			{4,"Leo Messaaaaai","Delantero",12,102,8000000,12,1},
-			{5,"Ceo Messi","Delantero",4,102,70040000,7,1},
-			{6,"Aeo Messi","Delantero",3,104,5000000,3,1},
-			{7,"Aeo Messi","Delantero",9,101,500012000,9,1},
-			{8,"Leo Messi","Delantero",1,101,2000000,10,1},
-			{9,"Aeo Messi","Delantero",8,105,30040000,8,1},
-			{10,"Leo Messi","Delantero",14,103,5000000,4,1},};
+	eJugador jugadores[TAM]={{1,"Leo Messi","Delantero",10,103,50000,12,1},
+			{2,"Juan Perez","Delantero",5,100,50000,5,1},
+			{3,"Alberto Gonzles","Delantero",2,103,40000,2,1},
+			{4,"Roberto Gomez","Delantero",12,102,80000,12,1},
+			{5,"Lucas Alvarez","Delantero",4,102,70040,7,1},
+			{6,"Jorge Lopez","Delantero",3,104,50000,5,1},
+			{7,"Ricardo Gutierrez","Delantero",9,101,50000,9,1},
+			{8,"Agustin Linarez","Delantero",1,101,20000,10,1},
+			{9,"Fernando Lopez","Delantero",8,105,30000,8,1},
+			{10,"Cristian Gomez","Delantero",14,103,50000,8,1},};
 	eConfederaciones confederaciones[CONF] = {{100,"CONMEBOL","SUDAMERICA",1916,1},
 												{101,"UEFA","EUROPA",1954,1},
 												{102,"AFC","ASIA",1954,1},
@@ -44,8 +44,8 @@ int main(void) {
 //	int opcInformes;
 
 
-	idJugador=10;
-	InicializarJugadores(jugadores, TAM);
+	idJugador=10; //esta inicializado en 10 para mantener los datos harcodeados para las pruevas
+	InicializarJugadores(jugadores, TAM); //tambien inicialioza el listado apartir de la posicion 10 para mantener los datos harcodeados
 //	ListadoAlfaConfeJugador(jugadores, confederaciones, TAM, CONF);
 //	MotrarJugadoresCompleto(jugadores, confederaciones, TAM, CONF);
 
