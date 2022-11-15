@@ -80,7 +80,6 @@ int controller_agregarJugador(LinkedList* pArrayListJugador)
 	int auxEdadStr;
 	char posicionStr[30];
 	char nacionalidadStr[30];
-	int tamCadena;
 	char idStr[10];
 	char EdadStr[10];
 	char IdSelccion[10]="0";
@@ -93,31 +92,21 @@ int controller_agregarJugador(LinkedList* pArrayListJugador)
 		itoa(auxId, idStr,10);
 
 		utn_getCadena(nombreCompletoStr, 30, "\nIngrese el nombre: ", "ERROR intenete nuevamente\n", 10);
-		tamCadena=strlen(nombreCompletoStr);
-		nombreCompletoStr[0]= nombreCompletoStr[0]-32;
-		for(int j =0;j<tamCadena;j++)
-		{
 
-		if(nombreCompletoStr[j]==' ')
-		{
-		//	printf("entro\n");
-			nombreCompletoStr[j+1]= nombreCompletoStr[j+1]-32;
-		}
-		}
-
+		utn_formateadorNombres(nombreCompletoStr);
 		jug_ElegirPosicion(posicionStr);
 
-		utn_getNumero(&auxEdadStr, "\nIngrese la edad de jugador: ",  "ERROR intenete nuevamente\n", 1, 99, 10);
+		utn_getNumero(&auxEdadStr, "\nIngrese la edad de jugador: ",  "ERROR intenete nuevamente (mayores de 16 años)\n", 16, 99, 10);
 		itoa(auxEdadStr, EdadStr,10);
 
 		utn_getCadena(nacionalidadStr,30, "\nIngrese la nacionalidad :", "ERROR intenete nuevamente\n", 10);
-		nacionalidadStr[0]= nacionalidadStr[0]-32;
+		utn_formateadorNombres(nacionalidadStr);
 
 		aux=jug_newParametros(idStr, nombreCompletoStr, EdadStr, posicionStr, nacionalidadStr, IdSelccion);
 		if(aux!=NULL)
 		{
 			ll_add(pArrayListJugador, aux);
-			printf("\n\t\tSE AGRESO UN NUEVO JUGADOR A LA LISTA\n\n");
+			printf("\n\t\tSE AGREGO UN NUEVO JUGADOR A LA LISTA\n\n");
 			jug_imprimirUnJugador(aux);
 			retorno=0;
 		}
@@ -158,7 +147,6 @@ int controller_editarJugador(LinkedList* pArrayListJugador)
 	int edad;
 	char posicion[30];
 	char nacionalidad[30];
-	int tamCadena;
 	Jugador* jugador;
 	int retorno=-1;
 	int flagEncontrado=0;
@@ -193,21 +181,11 @@ int controller_editarJugador(LinkedList* pArrayListJugador)
 					{
 					case 1:
 						utn_getCadena(nombre, 30, "\nIngrese el nombre: ", "ERROR intenete nuevamente\n", 10);
-						tamCadena=strlen(nombre);
-						nombre[0]= nombre[0]-32;
-						for(int j =0;j<tamCadena;j++)
-						{
-
-							if(nombre[j]==' ')
-							{
-								//	printf("entro\n");
-								nombre[j+1]= nombre[j+1]-32;
-							}
-						}
+						utn_formateadorNombres(nombre);
 						jug_setNombreCompleto(jugador, nombre);
 						break;
 					case 2:
-						utn_getNumero(&edad, "\nIngrese la edad de jugador: ",  "ERROR intenete nuevamente\n", 1, 99, 10);
+						utn_getNumero(&edad, "\nIngrese la edad de jugador: ",  "ERROR intenete nuevamente (mayores de 16 años)\n", 16, 99, 10);
 						jug_setEdad(jugador, edad);
 						break;
 					case 3:
@@ -217,7 +195,7 @@ int controller_editarJugador(LinkedList* pArrayListJugador)
 
 					case 4:
 						utn_getCadena(nacionalidad, 30, "\nIngrese la nacionalidad :", "ERROR intenete nuevamente\n", 10);
-						nacionalidad[0]= nacionalidad[0]-32;
+						utn_formateadorNombres(nacionalidad);
 						jug_setNacionalidad(jugador, nacionalidad);
 						break;
 
@@ -226,7 +204,7 @@ int controller_editarJugador(LinkedList* pArrayListJugador)
 
 				}while(opcion!=5);
 
-				printf("\n\t\tJUGADOR A MODIFICADO\n\n");
+				printf("\n\t\tJUGADOR A SIDO MODIFICADO\n\n");
 
 				jug_imprimirUnJugador(jugador);
 				retorno=0;
@@ -1035,169 +1013,6 @@ int controller_confirmarSalir(LinkedList* pArrayListJugador, LinkedList* pArrayL
 
 	return salida;
 }
-
-
-/// @fn void controller_menuPrincipal(LinkedList*, LinkedList*)
-/// @brief  despliega menu de opciones principales
-///
-/// @param pArrayListJugador	lista jugadores
-/// @param pArrayListSeleccion	lista selecciones
-void controller_menuPrincipal(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion)
-{
-	int opcion;
-	int flagGuardaArchivos=0;
-	LinkedList* listaFiltrada = ll_newLinkedList();
-
-	if(pArrayListJugador!=NULL && pArrayListSeleccion!=NULL)
-	{
-		do
-		{
-			utn_getNumero(&opcion, "\t\tMENU PRINCIPAL.\n\n\n1- CARGA DE ARCHIVOS:\n2- ALTA DE JUGADOR:\n3- MODIFICACIÓN DE JUGADOR:\n4- BAJA DE JUGADOR:\n5- LISTADOS:\n6- CONVOCAR JUGADORES:\n7- ORDENAR Y LISTAR:\n8- GENERAR ARCHIVO BINARIO:\n9- CARGAR ARCHIVO BINARIO:\n10- GUARDAR ARCHIVOS .CSV:\n11- SALIR.\n\n SELECCIONE UNA OPCION: ", "ERROR Opciones 1-11", 1, 11, 10);
-
-			switch(opcion)
-			{
-			case 1:
-				if(!controller_cargarJugadoresDesdeTexto("jugadores.csv", pArrayListJugador) &&
-						!controller_cargarSeleccionesDesdeTexto("selecciones.csv", pArrayListSeleccion))
-				{
-
-					printf("\nARCHIVOS CARGADOS EXITOSAMENTE.\n");
-				}
-				else
-				{
-					printf("\nERROR AL CARGAR LOS ARCHIVOS.\n");
-				}
-				break;
-			case 2:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_agregarJugador(pArrayListJugador);
-					flagGuardaArchivos=0;
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-				break;
-			case 3:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_editarJugador(pArrayListJugador);
-					flagGuardaArchivos=0;
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-
-				break;
-			case 4:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					if(!controller_removerJugador(pArrayListJugador,pArrayListSeleccion))
-					{
-						printf("\t\nEL JUGADOR FUE ELIMINADO EXITOSAMENTE\n\n\n");
-						flagGuardaArchivos=0;
-					}
-					else
-					{
-						printf("\t\nEL JUGADOR NO FUE ELIMINADO\n");
-					}
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-
-				break;
-			case 5:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_menuListados(pArrayListJugador, pArrayListSeleccion);
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-				break;
-			case 6:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_menuConvocar(pArrayListJugador, pArrayListSeleccion);
-					flagGuardaArchivos=0;
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-				break;
-			case 7:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_menuOrdenarListar(pArrayListJugador, pArrayListSeleccion);
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-				break;
-			case 8:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_listaConfeConvocados(pArrayListJugador, pArrayListSeleccion);
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-				break;
-			case 9:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_cargarJugadoresDesdeBinario("jugadoresFiltrados.bin", listaFiltrada);
-					controller_listarJugadoresCompleto(listaFiltrada, pArrayListSeleccion);
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-				break;
-			case 10:
-				if((ll_isEmpty(pArrayListJugador))==0 && (ll_isEmpty(pArrayListSeleccion))==0)
-				{
-					controller_guardarJugadoresModoTexto("jugadores.csv", pArrayListJugador);
-					controller_guardarSeleccionesModoTexto("selecciones.csv",pArrayListSeleccion);
-					flagGuardaArchivos=1;
-				}
-				else
-				{
-					printf("\t\t\nPOR FAVOR CARGAR PRIMERO LOS ARCHIVOS\n\n");
-				}
-
-				break;
-			case 11:
-				controller_confirmarSalir(pArrayListJugador, pArrayListSeleccion, flagGuardaArchivos);
-				break;
-
-			}
-
-		}while(opcion!=11);
-
-		ll_deleteLinkedList(listaFiltrada);
-	}
-
-}
-
-
-
 
 
 

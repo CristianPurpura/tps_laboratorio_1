@@ -394,6 +394,32 @@ int utn_getNumeroCorto(short* pResultado,char* mensaje,char* mensajeError,int mi
 	return retorno;
 }
 
+/// @fn int utn_formateadorNombres(char*)
+/// @brief pasa todo el nombre a minuscula y le pone mayuscula a la primera letra de cada palabra
+///
+/// @param pResultado
+/// @return
+int utn_formateadorNombres(char* pResultado)
+{
+	int tamCadena;
+	int retorno=-1;
+
+	strlwr(pResultado);
+	tamCadena=strlen(pResultado);
+	pResultado[0]= pResultado[0]-32;
+	for(int j =0;j<tamCadena;j++)
+	{
+
+	if(pResultado[j]==' ')
+	{
+	//	printf("entro\n");
+		pResultado[j+1]= pResultado[j+1]-32;
+	}
+	}
+
+	return retorno;
+}
+
 
 
 

@@ -35,7 +35,7 @@ int controller_confirmarSalir(LinkedList* pArrayListJugador, LinkedList* pArrayL
 void controller_menuOrdenarListar(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 void controller_menuListados(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
 void controller_menuConvocar(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
-void controller_menuPrincipal(LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
+
 
 
 
